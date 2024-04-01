@@ -385,3 +385,4 @@ if __name__ == "__main__":
             mm.monitor_exception(
                 alert_address=gpc.config.monitor.alert.feishu_alert_address, excp_info=traceback.format_exc()
             )
+            sys.exit(1)
