@@ -120,7 +120,7 @@ class PackedFlashBaseLayer1D(nn.Module):
         self.num_experts = num_experts
         ep_size = gpc.get_world_size(ParallelMode.EXPERT)
         if num_experts <= 1:  # dense, not MoE
-            if use_swiglu or not use_flash_attn:
+            if use_swiglu or not gpc.config.use_cuda_flash_attn:
                 mlp_cls = get_mlp_cls(self.tp_mode)
                 self.mlp = mlp_cls(
                     hidden_size,
@@ -150,9 +150,13 @@ class PackedFlashBaseLayer1D(nn.Module):
                 )
         else:
             # replace mlp by MoE module. The expert in MoE is a FeedForward module.
+            mlp_cls = get_mlp_cls(self.tp_mode)
             self.mlp = MoE(
-                hidden_size=hidden_size,
+                hidden_size,
+                int(hidden_size * mlp_ratio),
+                out_features=hidden_size,
                 num_experts=num_experts,
+                ep_cls=mlp_cls,
                 ep_group=gpc.get_group(ParallelMode.EXPERT),
                 ep_size=ep_size,
                 device=device,
@@ -333,7 +337,7 @@ class PackedFlashInternLm1D(nn.Module):
             head_cls = ScaleColumnParallelLinear
 
         if first:
-            if embed_split_hidden or not use_flash_attn:
+            if embed_split_hidden or not gpc.config.use_cuda_flash_attn:
                 self.embedding = Embedding1D(num_embeddings=vocab_size, embedding_dim=hidden_size)
             else:
                 from flash_attn.modules.embedding import ParallelGPT2Embeddings

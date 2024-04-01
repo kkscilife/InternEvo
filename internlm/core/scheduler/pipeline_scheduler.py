@@ -64,7 +64,7 @@ def get_tensor_shape():
                     gpc.config.data["seq_len"],
                     gpc.config.model["hidden_size"],
                 )
-        return tensor_shape
+        return torch.Size(tensor_shape)
     else:
         return None
 
@@ -224,7 +224,9 @@ class PipelineScheduler(BaseScheduler):
             micro_batch_data["input_ids"] = self.data_process_func(
                 micro_batch_data["input_ids"], micro_batch_data["cu_seqlens"]
             )
-            micro_batch_label = self.data_process_func(micro_batch_label, micro_batch_data["cu_seqlens"])
+            micro_batch_label = self.data_process_func(
+                micro_batch_label, micro_batch_data["cu_seqlens"], padding_v=-100
+            )
 
             micro_batch_data.pop("cu_seqlens")
             micro_batch_data.pop("indexes")
@@ -822,7 +824,9 @@ class InterleavedPipelineScheduler(PipelineScheduler):
             micro_batch_data["input_ids"] = self.data_process_func(
                 micro_batch_data["input_ids"], micro_batch_data["cu_seqlens"]
             )
-            micro_batch_label = self.data_process_func(micro_batch_label, micro_batch_data["cu_seqlens"])
+            micro_batch_label = self.data_process_func(
+                micro_batch_label, micro_batch_data["cu_seqlens"], padding_v=-100
+            )
 
             micro_batch_data.pop("cu_seqlens")
             micro_batch_data.pop("indexes")
