@@ -40,7 +40,7 @@ jobs:
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
-        srun -p ${SLURM_PARTITION} --kill-on-bad-exit=1 --job-name=\$jobname -N 1 -n 1 --gres=gpu:8 python -m pytest -s -v ./tests/test_core/test_pipeline.p
+        srun -p ${SLURM_PARTITION} --kill-on-bad-exit=1 --job-name=\$jobname -N 1 -n 1 --gres=gpu:8 python -m pytest -s -v ./tests/test_core/test_pipeline.py
         exit_code=$?
         sh ./ci_scripts/common/check_slurm_cancled.sh \$exit_code \$jobname
         EOF
