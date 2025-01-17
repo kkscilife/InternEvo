@@ -28,7 +28,7 @@ jobs:
 
     - name: model_init_tests
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH
@@ -50,7 +50,7 @@ jobs:
 
     - name: forward_output_no_fa
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH
@@ -72,7 +72,7 @@ jobs:
 
     - name: test_embedding_accuracy
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=embedding-${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -83,7 +83,7 @@ jobs:
 
     - name: test_model_internlm_accuracy
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=model-${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -94,7 +94,7 @@ jobs:
 
     - name: test_norm_accuracy
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=norm_${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}

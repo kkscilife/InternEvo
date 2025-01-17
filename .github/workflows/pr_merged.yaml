@@ -24,7 +24,7 @@ jobs:
 
     - name: acc_tests
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH
@@ -46,7 +46,7 @@ jobs:
 
     - name: loss_tests
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH

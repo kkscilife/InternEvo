@@ -22,7 +22,7 @@ jobs:
 
     - name: training_4GPU
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -45,7 +45,7 @@ jobs:
 
     - name: training_8GPU_4DP2TP
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -68,7 +68,7 @@ jobs:
 
     - name: training_8GPU_4DP2TPSP
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -91,7 +91,7 @@ jobs:
 
     - name: training_8GPU_4DP2TPSP_optimizer_v2
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -114,7 +114,7 @@ jobs:
 
     - name: training_8GPU_4DP2PP
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -137,7 +137,7 @@ jobs:
 
     - name: training_8GPU_4DP2PP_optimizer_v2
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -160,7 +160,7 @@ jobs:
 
     - name: training_8GPU_4DP2PP_InterleavedOverlap
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -183,7 +183,7 @@ jobs:
 
     - name: training_16GPU_4DP2TP2PP_MTP
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -206,7 +206,7 @@ jobs:
 
     - name: training_16GPU_4DP2TP2PP_MSP
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -229,7 +229,7 @@ jobs:
 
     - name: training_16GPU_4DP2TP2PP_MSP_optimizer_v2
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -252,7 +252,7 @@ jobs:
 
     - name: training_16GPU_4DP2TP2PP_FSP
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -275,7 +275,7 @@ jobs:
 
     - name: training_8GPU_ISP
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -298,7 +298,7 @@ jobs:
 
     - name: training_8GPU_ISP_CKPT
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -326,7 +326,7 @@ jobs:
 
     - name: test_optimizer
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -349,7 +349,7 @@ jobs:
 
     - name: test_ckpt_loss
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}

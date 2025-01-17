@@ -27,7 +27,7 @@ jobs:
 
     - name: raw-chinese-data
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         export GITHUB_WORKSPACE=$GITHUB_WORKSPACE
         export SLURM_PARTITION=$SLURM_PARTITION
@@ -37,7 +37,7 @@ jobs:
 
     - name: alpaca-data
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         export GITHUB_WORKSPACE=$GITHUB_WORKSPACE 
         export SLURM_PARTITION=$SLURM_PARTITION
@@ -58,7 +58,7 @@ jobs:
     - name: slurm-train
       id: basic_train
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         export GITHUB_WORKSPACE=$GITHUB_WORKSPACE
         export SLURM_PARTITION=$SLURM_PARTITION
@@ -69,7 +69,7 @@ jobs:
     - name: load_preset_ckpt
       if: ${{ failure() && steps.basic_train.conclusion == 'failure' }}
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         export GITHUB_WORKSPACE=$GITHUB_WORKSPACE
         export SLURM_PARTITION=$SLURM_PARTITION
@@ -80,7 +80,7 @@ jobs:
 
     - name: load_new_ckpt
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         export GITHUB_WORKSPACE=$GITHUB_WORKSPACE
         export SLURM_PARTITION=$SLURM_PARTITION
@@ -92,7 +92,7 @@ jobs:
 
     - name: torchrun-train
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         export GITHUB_WORKSPACE=$GITHUB_WORKSPACE
         export SLURM_PARTITION=$SLURM_PARTITION
@@ -113,7 +113,7 @@ jobs:
 
     - name: convert-model-then-load
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         export GITHUB_WORKSPACE=$GITHUB_WORKSPACE
         export SLURM_PARTITION=$SLURM_PARTITION

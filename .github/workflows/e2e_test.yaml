@@ -27,7 +27,7 @@ jobs:
 
     - name: training_4GPU
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -48,7 +48,7 @@ jobs:
 
     - name: training_8GPU_ISP
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=ISP-${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -69,7 +69,7 @@ jobs:
 
     - name: training_8GPU_ISP_CKPT
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=ISP_CKPT-${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -96,7 +96,7 @@ jobs:
     - name: training_8GPU_4DP2TP_T
       if: ${{ matrix.runner == 't_cluster' }}
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -120,7 +120,7 @@ jobs:
     - name: training_8GPU_4DP2TPSP_T
       if: ${{ matrix.runner == 't_cluster' }}
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         srun -p ${SLURM_PARTITION} --kill-on-bad-exit=1 --job-name=\$jobname -n8 --ntasks-per-node=8 --cpus-per-task=4 --gpus-per-task=1 pytest -s -v --color=yes -m "training_8GPU_4DP2TPSP" ./tests/test_training/test_loss.py
@@ -143,7 +143,7 @@ jobs:
     - name: training_8GPU_4DP2PP_T
       if: ${{ matrix.runner == 't_cluster' }}
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -164,7 +164,7 @@ jobs:
 
     - name: training_8GPU_4DP2PP_ZB
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -188,7 +188,7 @@ jobs:
     - name: training_16GPU_4DP2TP2PP_MTP_T
       if: ${{ matrix.runner == 't_cluster' }}
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -212,7 +212,7 @@ jobs:
     - name: training_16GPU_4DP2TP2PP_MSP_T
       if: ${{ matrix.runner == 't_cluster' }}
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -236,7 +236,7 @@ jobs:
     - name: training_16GPU_4DP2TP2PP_FSP_T
       if: ${{ matrix.runner == 't_cluster' }}
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}
@@ -259,7 +259,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: training_llama2_T
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         jobname=${GITHUB_RUN_ID}-${GITHUB_JOB}-${GITHUB_RUN_ATTEMPT}

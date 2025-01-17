@@ -35,7 +35,7 @@ jobs:
 
     - name: core_pipeline
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH
@@ -57,7 +57,7 @@ jobs:
 
     - name: utils_storage_manager
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH
@@ -79,7 +79,7 @@ jobs:
 
     - name: model_fused_precision
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH
@@ -101,7 +101,7 @@ jobs:
 
     - name: data_batch_sample
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH
@@ -123,7 +123,7 @@ jobs:
 
     - name: utils_timeout
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH
@@ -145,7 +145,7 @@ jobs:
 
     - name: utils_model_checkpoint
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         export PYTHONPATH=$PWD:$PYTHONPATH

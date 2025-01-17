@@ -25,13 +25,13 @@ jobs:
 
     - name: install dependencies
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         pip install setuptools wheel twine
         EOF
 
     - name: build and upload package
       run: |
-        ssh ${USER}@${HOSTNAME} bash << EOF
+        ssh ${USER}@${CI_HOST} bash << EOF
         cd $GITHUB_WORKSPACE
         source activate ${evo_env_torch21_flash2}
         python_path=$(which python) && echo "Python executable is at: \$python_path"
