@@ -9,6 +9,15 @@ on:
 
 jobs:
   # lint check can be auto-executed by the workflow
+  build_02:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: debug-link
+        run: |
+          pip install pre-commit
+          pre-commit run --all-files
+
   lint-check:
     runs-on: ubuntu-20.04
     steps:
